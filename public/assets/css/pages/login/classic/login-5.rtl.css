@@ -1,0 +1,47 @@
+.login.login-5 .login-forgot,
+.login.login-5 .login-signin,
+.login.login-5 .login-signup,
+.login.login-5 .login-verify{display:none}
+.login.login-5 .login-reset{display:none}
+
+.login.login-5.login-signin-on .login-signup{display:none}
+.login.login-5.login-signin-on .login-signin{display:block}
+.login.login-5.login-signin-on .login-forgot{display:none}
+.login.login-5.login-signin-on .login-reset{display:none}
+.login.login-5.login-signin-on .login-verify{display:none}
+
+.login.login-5.login-signup-on .login-signup{display:block}
+.login.login-5.login-signup-on .login-signin{display:none}
+.login.login-5.login-signup-on .login-forgot{display:none}
+.login.login-5.login-signup-on .login-reset{display:none}
+.login.login-5.login-signup-on .login-verify{display:none}
+
+.login.login-5.login-forgot-on .login-signup{display:none}
+.login.login-5.login-forgot-on .login-signin{display:none}
+.login.login-5.login-forgot-on .login-forgot{display:block}
+.login.login-5.login-forgot-on .login-reset{display:none}
+.login.login-5.login-forgot-on .login-verify{display:none}
+
+.login.login-5.login-reset-on .login-signup{display:none}
+.login.login-5.login-reset-on .login-signin{display:none}
+.login.login-5.login-reset-on .login-forgot{display:none}
+.login.login-5.login-reset-on .login-reset{display:block}
+.login.login-5.login-reset-on .login-verify{display:none}
+
+
+.login.login-5.login-verify-on .login-signup{display:none}
+.login.login-5.login-verify-on .login-signin{display:none}
+.login.login-5.login-verify-on .login-forgot{display:none}
+.login.login-5.login-verify-on .login-reset{display:none}
+.login.login-5.login-verify-on .login-verify{display:block}
+
+.login.login-5 .login-form{width:100%;max-width:450px}
+
+@media (max-width:575.98px){.login.login-5 .login-form{width:100%;max-width:100%}}
+.kt_login_signin_form{text-align: right !important; direction: rtl;}
+.fv-plugins-message-container{ text-align: right !important; }
+
+.alert-top{
+    margin-top: 8px;
+}
+

@@ -1,0 +1,14 @@
+.label-dir{
+    text-align: right !important;
+}
+
+.input-dir{
+    text-align: end;
+}
+
+.btn-dir{
+    text-align: center !important;
+}
+#number-to-string{
+    font-size: 10px;
+}

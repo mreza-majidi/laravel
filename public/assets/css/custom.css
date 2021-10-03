@@ -1,0 +1,38 @@
+
+.input-width {
+    min-width: 200px
+}
+.select2-container[dir=rtl] .select2-selection--single .select2-selection__rendered{
+    top:-8px;
+}
+.message-seen-style{
+    background:#3a3d46;
+    border-radius:10px;
+}
+
+.icon-color {
+    color: #f0ae0e !important;
+}
+.text-gold{
+    color:#ffd36a !important;
+}
+.btn-gold{
+    background: #ffd36a !important;
+}
+.bg-gold{
+    background: #ffd36a !important;
+}
+.hover-gold:hover{
+    background: #ffd36a !important;
+    border:none !important;
+
+}
+.bg-dark-custom-1{
+    background:#212832 !important; ;
+}
+.bg-dark-custom-2{
+    background:#212832 !important; ;
+}
+body{
+    background: #131323 !important;
+}

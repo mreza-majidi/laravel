@@ -1,0 +1,64 @@
+stages:
+  - codestyle
+  - test
+  - deploy_staging
+
+variables:
+  MYSQL_DATABASE: $DINA_DATABASE_NAME
+  DB_HOST: mysql-db
+
+cache:
+  paths:
+    - vendor/
+    - node_modules/
+
+deploy_staging:
+  stage: deploy_staging
+  image: registry.dinadev.ir/dinaweb/dev/docker-images/laravel-deployer:latest
+  before_script:
+    - eval $(ssh-agent -s)
+    - echo "$DINA_STAGING_PRIVATE_KEY" | tr -d '\r' | ssh-add -
+  script:
+    - laravel-staging-deployer git $DINA_STAGING_INTERNAL_IP $DINA_STAGING_DIR_PATH develop $DEPLOY_TOKEN_USERNAME $DEPLOY_TOKEN_PASSWORD
+  environment:
+    name: staging
+    url: $DINA_STAGING_URL
+  only:
+    - develop
+  tags:
+    - deploy_staging
+
+run_tests:
+  stage: test
+  image: registry.dinadev.ir/dinaweb/dev/docker-images/gitlab-ci-php-pipeline:latest
+  services:
+    - name: registry.dinadev.ir/dinaweb/dev/docker-images/mysql:latest
+      alias: mysql-db
+  variables:
+    GIT_STRATEGY: fetch
+  before_script:
+    - mariadb --version
+    - cp .env.test .env
+    - composer config --auth http-basic.git.dinadev.ir $DEPLOY_TOKEN_USERNAME $DEPLOY_TOKEN_PASSWORD --no-ansi --no-interaction
+    - composer install --prefer-dist --no-ansi --no-interaction --no-progress --no-scripts
+    - php artisan key:generate
+    - php artisan migrate:fresh --seed
+  script:
+    - ./vendor/bin/phpunit --coverage-text
+  artifacts:
+    paths:
+      - ./storage/logs
+    expire_in: 1 days
+    when: always
+  only:
+    - /^(?i)feature\/.*$/
+
+phpcs:
+  stage: codestyle
+  image: registry.dinadev.ir/dinaweb/dev/docker-images/phpcs:latest
+  before_script:
+    - git fetch
+  script:
+    - git-phpcs origin/$CI_COMMIT_BRANCH
+  only:
+    - /^(?i)feature\/.*$/
